@@ -15,9 +15,6 @@ app = FastAPI()
 templates = Jinja2Templates(directory="app/templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Rest of your RAG application code...
-[Include the rest of your existing main.py code here]
-
 # Initialize vectorstore and retriever
 vectorstore = None
 retriever = None
