@@ -1,18 +1,22 @@
-import os
 from fastapi import FastAPI, UploadFile, File, Form, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from dotenv import load_dotenv
-from app.utils.file_processing import process_file
-from app.utils.vectorstore import get_retriever, get_qa_chain
-from typing import Optional
+import os
+from pathlib import Path
+
+# Create static directory if it doesn't exist
+Path("static").mkdir(exist_ok=True)
 
 load_dotenv()
 
 app = FastAPI()
 templates = Jinja2Templates(directory="app/templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Rest of your RAG application code...
+[Include the rest of your existing main.py code here]
 
 # Initialize vectorstore and retriever
 vectorstore = None
