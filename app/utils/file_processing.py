@@ -3,15 +3,17 @@ from langchain_community.document_loaders import (
     PyPDFLoader,
     CSVLoader,
     TextLoader,
-    UnstructuredExcelLoader,
-    WebBaseLoader
+    UnstructuredExcelLoader
 )
+from langchain_community.document_loaders.web_base import WebBaseLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 def process_file(file_path: str):
+    # Get the file extension in lowercase
     _, file_extension = os.path.splitext(file_path)
     file_extension = file_extension.lower()
     
+    # Select appropriate loader based on file type
     if file_extension == '.pdf':
         loader = PyPDFLoader(file_path)
     elif file_extension == '.csv':
@@ -23,12 +25,32 @@ def process_file(file_path: str):
     else:
         raise ValueError(f"Unsupported file type: {file_extension}")
     
+    # Load the raw documents
     documents = loader.load()
     
+    # Split the documents using recursive strategy
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
         chunk_overlap=200
     )
     
+    # Split and return
+    docs = text_splitter.split_documents(documents)
+    return docs
+
+def process_web_page(url: str):
+    # Create a web loader for the given URL
+    loader = WebBaseLoader(url)
+    
+    # Load the raw documents from the web page
+    documents = loader.load()
+    
+    # Split the documents using recursive strategy
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1000,
+        chunk_overlap=200
+    )
+    
+    # Split and return
     docs = text_splitter.split_documents(documents)
     return docs
