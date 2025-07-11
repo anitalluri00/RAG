@@ -38,6 +38,15 @@ def process_file(file_path: str):
     docs = text_splitter.split_documents(documents)
     return docs
 
+# Use the function
+if __name__ == "__main__":
+    try:
+        path = "your_file_path_here.pdf"  # Replace with actual path
+        chunks = process_file(path)
+        print(f"Processed {len(chunks)} document chunks.")
+    except Exception as e:
+        print(f"Error processing file: {e}")
+
 def process_web_page(url: str):
     # Create a web loader for the given URL
     loader = WebBaseLoader(url)
