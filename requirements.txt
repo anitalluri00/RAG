@@ -6,3 +6,4 @@ langchain-community
 faiss-cpu
 unstructured
 pandas
+protobuf==4.21.12
