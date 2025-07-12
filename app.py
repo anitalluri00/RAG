@@ -10,6 +10,9 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+print(embeddings.embed_query("hello world"))
 # Load API Key
 load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
