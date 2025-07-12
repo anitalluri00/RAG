@@ -12,7 +12,8 @@ from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmb
 
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
-print(embeddings.embed_query("hello world"))
+print(embeddings.embed_query("test"))  # Should return a long list of floats (embedding)
+
 # Load API Key
 load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
